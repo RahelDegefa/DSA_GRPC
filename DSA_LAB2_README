@@ -1,0 +1,19 @@
+Create files from the .proto
+
+docker run --rm -v "${PWD}:/work" -w /work python:3.13-slim sh -c "pip install --no-cache-dir grpcio-tools && python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. items.proto"
+
+Build, run and containerize grpc service with docker
+
+docker build --pull -t dsa-lab2-items-grpc:1.0 .
+
+docker rm -f dsa-lab2-items-grpc 2>$null
+
+docker run -d `
+  --name dsa-lab2-items-grpc `
+  -p 50052:50051 `
+  -e SERVICE_NAME=items-grpc-service `
+  dsa-lab2-items-grpc:1.0
+
+run server.python
+
+After server.py run client.py
