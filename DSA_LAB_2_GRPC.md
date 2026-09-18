@@ -26,7 +26,7 @@ docker run --rm -v "${PWD}:/work" -w /work python:3.13-slim sh -c "pip install -
 
 The numbers (= 1, = 2, etc.) are unique field identifiers used by Protobuf when encoding messages.
 
-# 4 ashort explanation of-p 50052:50051;
+# 4 a short explanation of-p 50052:50051;
 
 * 50052 → port on local computer (host) and 50051 → port inside the Docker container
 
@@ -35,8 +35,6 @@ The numbers (= 1, = 2, etc.) are unique field identifiers used by Protobuf when 
 # 5  one paragraph on where streaming could help
 
 * Streaming is useful when large amounts of data need to be sent continuously instead of waiting for one complete response. For example, ListItems can stream many items from the server to the client, AddItems can allow the client to send many items without separate requests
-
-
 
 Part - 2
 
@@ -48,6 +46,7 @@ Part - 2
 python client.py
 
 #2. Why the generated files appear on your host machine?
+
 * python -m grpc_tools.protoc ... will generate items_pb2.py, items_pb2_grpc.py
 
 * /work is mounted to the current directory, /work inside Docker is our working folder
@@ -59,6 +58,7 @@ python client.py
 * gRPC and the generated Protobuf code already handles the serialization and deserialization
 
 # 4. which option you chose, what you changed, and what you learned
+
 * I have choosen ListItemsByStatus - 
 Change made to add the curiosity part was first on the .protobuf -  
 message ListItemsByStatusRequest {          // curiosity section
